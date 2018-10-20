@@ -20,7 +20,7 @@ namespace CodeShopWarehouse.Web.Controllers
 		[HttpGet]
 		public IActionResult GetFillOrders()
 		{
-			return Ok(_fillOrderService.GetFillOrders());
+			return Ok(_fillOrderService.GetAllFillOrders());
 		}
 
 		[HttpGet("{id}")]

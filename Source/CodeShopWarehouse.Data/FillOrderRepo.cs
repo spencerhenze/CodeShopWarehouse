@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using CodeShopWarehouse.Entities;
 
 namespace CodeShopWarehouse.Data
@@ -8,7 +9,9 @@ namespace CodeShopWarehouse.Data
 	public interface IFillOrderRepo
 	{
 		FillOrder GetFillOrderById(int id);
-		List<FillOrder> GetFillOrders();
+		List<FillOrder> GetOrdersByProductId(int productId);
+		List<FillOrder> GetAllFillOrders();
+		List<FillOrder> GetUnresolvedFillOrders();
 		void UpdateFillOrder(FillOrder fillOrder);
 	}
 
@@ -47,21 +50,34 @@ namespace CodeShopWarehouse.Data
 			return _fillOrders.Find(x => x.Id == id);
 		}
 
-		public List<FillOrder> GetFillOrders()
+
+		public List<FillOrder> GetAllFillOrders()
 		{
 			return _fillOrders;
 		}
 
+		public List<FillOrder> GetUnresolvedFillOrders()
+		{
+			return _fillOrders.Where(x => x.ProcessedTimestamp == null).ToList();
+		}
+
+
 		public void UpdateFillOrder(FillOrder fillOrder)
 		{
-			var fillOrderToUpdate = _fillOrders.Find(x => x.Id == fillOrder.Id);
+			var fillOrderToUpdate = GetFillOrderById(fillOrder.Id);
 
 			if (fillOrderToUpdate == null)
 			{
 				throw new Exception("Fill order does not exist");
 			}
 
-			fillOrderToUpdate = fillOrder;
+			_fillOrders.Remove(fillOrderToUpdate);
+			_fillOrders.Add(fillOrder);
+		}
+
+		public List<FillOrder> GetOrdersByProductId(int productId)
+		{
+			return _fillOrders.Where(x => x.ProductId == productId).ToList();
 		}
 	}
 }

@@ -14,9 +14,19 @@ namespace CodeShopWarehouse.Business
 			_fillOrderRepo = fillOrderRepo;
 		}
 
-		public List<FillOrder> GetFillOrders()
+		public List<FillOrder> GetAllFillOrders()
 		{
-			return _fillOrderRepo.GetFillOrders();
+			return _fillOrderRepo.GetAllFillOrders();
+		}
+
+		public List<FillOrder> GetUnresolvedFillOrders()
+		{
+			return _fillOrderRepo.GetUnresolvedFillOrders();
+		}
+
+		public List<FillOrder> GetFillOrdersByProductId(int productId)
+		{
+			return _fillOrderRepo.GetOrdersByProductId(productId);
 		}
 
 		public FillOrder GetFillOrderById(int id)
