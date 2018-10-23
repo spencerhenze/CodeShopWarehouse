@@ -2,6 +2,7 @@
 using CodeShopWarehouse.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CodeShopWarehouse.Web.Controllers
 {
@@ -16,7 +17,7 @@ namespace CodeShopWarehouse.Web.Controllers
 		{
 			_fillOrderService = fillOrderService;
 		}
-
+		[AllowAnonymous]
 		[HttpGet]
 		public IActionResult GetFillOrders()
 		{
@@ -36,8 +37,8 @@ namespace CodeShopWarehouse.Web.Controllers
 			{
 				throw new Exception();
 			}
-			_fillOrderService.ProcessFillOrder(fillOrder);
-			return Ok();
+			
+			return Ok(_fillOrderService.ProcessFillOrder(fillOrder));
 		}
 
 	}

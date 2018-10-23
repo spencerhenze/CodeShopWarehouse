@@ -21,7 +21,15 @@ namespace CodeShopWarehouse.Web
 				options.CheckConsentNeeded = context => true;
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
-
+			services.AddCors(o =>
+			{
+				o.AddPolicy("cool policy", x =>
+				{
+					x.AllowAnyHeader();
+					x.AllowAnyMethod();
+					x.AllowAnyOrigin();
+				});
+			});
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -42,8 +50,12 @@ namespace CodeShopWarehouse.Web
 				app.UseExceptionHandler("/Home/Error");
 			}
 
+			app.UseCors("cool policy");
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
+			app.UseStaticFiles();
+			app.UseDefaultFiles();
+
 
 			app.UseMvc(routes =>
 			{
