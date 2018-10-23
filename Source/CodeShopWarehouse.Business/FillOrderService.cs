@@ -52,5 +52,10 @@ namespace CodeShopWarehouse.Business
 			return currentFillOrder;
 		}
 
+		public string CreateNewOrder(FillOrder order)
+		{
+			return _fillOrderRepo.CreateNewOrder(order);
+		}
+
 	}
 }

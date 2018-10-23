@@ -30,6 +30,17 @@ namespace CodeShopWarehouse.Web.Controllers
 			return Ok(_fillOrderService.GetFillOrderById(id));
 		}
 
+		[HttpPost]
+		public IActionResult CreateNewOrder([FromBody] FillOrder fillOrder)
+		{
+			if (!ModelState.IsValid)
+			{
+				throw new Exception();
+			}
+
+			return Ok(_fillOrderService.CreateNewOrder(fillOrder));
+		}
+
 		[HttpPost("process")]
 		public IActionResult ProcessFillOrder([FromBody] FillOrder fillOrder)
 		{

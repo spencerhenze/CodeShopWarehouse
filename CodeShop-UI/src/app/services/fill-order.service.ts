@@ -46,4 +46,7 @@ export class FillOrderService {
         })
     }
 
+    createNewOrder(fillOrder: FillOrder): Observable<any> {
+        return this.http.post(`${this.baseUrl}`, fillOrder, {responseType: 'text'})
+    }
 }

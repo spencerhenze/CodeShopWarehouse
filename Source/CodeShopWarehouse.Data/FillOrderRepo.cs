@@ -13,6 +13,7 @@ namespace CodeShopWarehouse.Data
 		List<FillOrder> GetAllFillOrders();
 		List<FillOrder> GetUnresolvedFillOrders();
 		void UpdateFillOrder(FillOrder fillOrder);
+		string CreateNewOrder(FillOrder fillOrder);
 	}
 
 	public class FillOrderRepo: IFillOrderRepo
@@ -78,6 +79,11 @@ namespace CodeShopWarehouse.Data
 		public List<FillOrder> GetOrdersByProductId(int productId)
 		{
 			return _fillOrders.Where(x => x.ProductId == productId).ToList();
+		}
+
+		public string CreateNewOrder(FillOrder order)
+		{
+			return "Done";
 		}
 	}
 }
