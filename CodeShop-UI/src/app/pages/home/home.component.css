@@ -1,0 +1,19 @@
+.order-card {
+    width: 100%;
+}
+
+.flex-row{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#orders-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#orders-cards-container {
+    width: 80%;
+}
