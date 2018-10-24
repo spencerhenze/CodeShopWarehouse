@@ -7,7 +7,7 @@
 <div id="orders-container">
 	<div id="orders-cards-container">
         <H3>Here are the fill orders:</H3>
-        <button clas="btn btn-primary" (click)="createNewOrder()">Create Order</button>
+        <button class="btn btn-primary" (click)="createNewOrder()">Create Order</button>
 		<div class="card order-card" *ngFor="let order of fillOrders; let i = index">
 			<div class="card-body flex-row">
 				<h5 class="card-title">Order Id: {{order.id}}</h5>

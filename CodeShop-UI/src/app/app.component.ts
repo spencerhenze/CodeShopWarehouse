@@ -12,7 +12,7 @@ export class AppComponent {
   title = 'app';
   fillOrders: FillOrder[];
   subscribe = true;
-  newOrderTracker = 100;
+  newOrderTracker = this.fillOrders ? this.fillOrders.length : 6;
 
   constructor(
       public fillOrderService: FillOrderService
